@@ -1,4 +1,4 @@
-jqury-ui-intervals
+jquery-ui-intervals
 ==================
 
 Extends jquery-ui slider widget to include multiple ranges within a single slider
