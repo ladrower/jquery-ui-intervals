@@ -9,48 +9,73 @@ Live example at jsFiddle http://jsfiddle.net/3kZTe/5/
 Intervals class interface
 =========================
 
+
 /**
  * Adds single period to this intervals instance and rebuilds the slider
  * @param {Number} start - start point for the period
  * @param {Number} length - the length for the period
  * @return {Object|null}
+ * 
  */
+
 Intervals.addPeriod = function(start, length) {}
 
+
+=
 /**
  * Adds multiple periods and rebuilds the intervals slider
  * @param {Array} periodsArray example: Array([[0,20],[40,60]...])
  * @return {Object} self instance of am.Intervals class
+ * 
  */
+
 Intervals.addPeriods = function(periodsArray) {}
 
+
+=
 /**
  * Get period by id
  * @param {Number} id
  * @return {Object}
+ * 
  */
+
 Intervals.getPeriod = function(id) {}
 
+
+=
 /**
  * Gets all periods for this intervals instance
  * @return {Array} of each period.toPublic() object
+ * 
  */
+
 Intervals.getPeriods = function() {}
 
+
+=
 /**
  * @param {Number} id - period Id
  * @param {Array[Number, Number]} abscissas as [a1, a2]
  * @return {Boolean}
+ * 
  */
+
 Intervals.isValidPeriod = function(id, abscissas) {}
 
+
+=
 /**
  * @param {Number} id - period Id
  * @param {Array} abscissas as [a1, a2]
  * @return {Object} self instance of Intervals class
+ * 
  */
+
 Intervals.updatePeriod = function(id, abscissas) {}
 
+
+=
 /**
  * Sets callback function that can be used for period delete confirmation window
  *
@@ -67,9 +92,13 @@ Intervals.updatePeriod = function(id, abscissas) {}
  *          }());
  *      });
  * @return {Object} self instance of Intervals class
+ * 
  */
+
 Intervals.setDeletePeriodConfirmCallback = function(confirmFunction) {}
 
+
+=
 /**
  * Sets callback function that can be used for period add confirmation window
  *
@@ -86,9 +115,13 @@ Intervals.setDeletePeriodConfirmCallback = function(confirmFunction) {}
  *          }());
  *      });
  * @return {Object} self instance of Intervals class
+ * 
  */
+
 Intervals.setAddPeriodConfirmCallback = function(confirmFunction) {}
 
+
+=
 /**
  * Sets callback function for handle's mouseenter event
  *
@@ -107,9 +140,13 @@ Intervals.setAddPeriodConfirmCallback = function(confirmFunction) {}
  *          //...
  *      });
  * @return {Object} self instance of Intervals class
+ * 
  */
+
 Intervals.setOnHandleMouseenterCallback = function(callbackFunction) {}
 
+
+=
 /**
  * Sets callback function for handle's slide event
  *
@@ -128,26 +165,41 @@ Intervals.setOnHandleMouseenterCallback = function(callbackFunction) {}
  *          //...
  *      });
  * @return {Object} self instance of Intervals class
+ * 
  */
+
 Intervals.setOnHandleSlideCallback = function(callbackFunction) {}
 
+
+=
 /**
  * Deletes all periods and rebuilds the intervals slider
  * @return {Object} self instance of Intervals class
+ * 
  */
+
 Intervals.empty = function() {}
 
+
+=
 /**
  * Gets jQuery object associated with this intervals instance
  * @return {Object} jQuery object
+ * 
  */
+
 Intervals.getSlider = function() {}
 
+
+=
 /**
  * Checks if slider DOM element has been unwidgetized
  * @return {Boolean}
+ * 
  */
+
 Intervals.isDestroyed = function() {}
+
 
 =========================
 
