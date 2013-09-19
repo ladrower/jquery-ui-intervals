@@ -3,7 +3,7 @@ jquery-ui-intervals
 
 Extends jquery-ui slider widget to include multiple ranges within a single slider
 
-Live example at jsFiddle http://jsfiddle.net/3kZTe/5/
+Live example at jsFiddle http://jsfiddle.net/3kZTe/6/
 
 
 Intervals class interface
