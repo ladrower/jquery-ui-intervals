@@ -2,8 +2,8 @@
  * Intervals
  * @author Artem Platonov
  * @description Extends jquery-ui slider widget to include multiple ranges within a single slider
- * @example At jsFiddle http://jsfiddle.net/3kZTe/5/
- * @link http://jsfiddle.net/3kZTe/5/
+ * @example At jsFiddle http://jsfiddle.net/3kZTe/6/
+ * @link http://jsfiddle.net/3kZTe/6/
  */
 
 (function(w, $) {
