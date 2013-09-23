@@ -748,11 +748,11 @@
          *
          * @example
          *      intervals.setOnHandleMouseenterCallback(function(context, period, edgeIndex) {
-       *          var handlePosition = context.offset().left;
-       *          var periodId = period.getId();
-       *          var handleAbscissa = period.getAbscissas()[edgeIndex];
-       *          //...
-       *      });
+         *          var handlePosition = context.offset().left;
+         *          var periodId = period.getId();
+         *          var handleAbscissa = period.getAbscissas()[edgeIndex];
+         *          //...
+         *      });
          * @return {Object} self instance of Intervals class
          */
         this.setOnHandleMouseenterCallback = function(callbackFunction) {
@@ -774,11 +774,11 @@
          *
          * @example
          *      intervals.setOnHandleSlideCallback(function(context, period, edgeIndex) {
-       *          var handlePosition = context.offset().left;
-       *          var periodId = period.getId();
-       *          var handleAbscissa = period.getAbscissas()[edgeIndex];
-       *          //...
-       *      });
+         *          var handlePosition = context.offset().left;
+         *          var periodId = period.getId();
+         *          var handleAbscissa = period.getAbscissas()[edgeIndex];
+         *          //...
+         *      });
          * @return {Object} self instance of Intervals class
          */
         this.setOnHandleSlideCallback = function(callbackFunction) {
