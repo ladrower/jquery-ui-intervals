@@ -1,9 +1,33 @@
 jquery-ui-intervals
-==================
+===================
 
 Extends jquery-ui slider widget to include multiple ranges within a single slider
 
 Live example at jsFiddle http://jsfiddle.net/ladrower/BmQq4/
+
+
+
+Intervals class constructor
+===========================
+
+/**
+ * @class Intervals
+ * @constructor
+ * @param {String} selector jQuery selector
+ * @param {Object} userOptions (optional) Custom options object that overrides default
+ * {
+ *      @property {Number} userOptions.min Slider minimum value
+ *      @property {Number} userOptions.max Slider maximum value
+ *      @property {Number} userOptions.step Slider sliding step
+ *      @property {Number} userOptions.gap Minimum gap between handles when add/remove range controls are visible
+ *      @property {Number} userOptions.newlength Default length for newly created range. Will be adjusted between surrounding handles if not fitted
+ *      @property {Boolean} userOptions.disabled Slider disability flag
+ * }
+ * 
+ */
+
+w.Intervals = function(selector, userOptions) {}
+
 
 
 Intervals class interface
