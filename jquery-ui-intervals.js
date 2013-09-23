@@ -2,8 +2,8 @@
  * Intervals
  * @author Artem Platonov
  * @description Extends jquery-ui slider widget to include multiple ranges within a single slider
- * @example At jsFiddle http://jsfiddle.net/3kZTe/6/
- * @link http://jsfiddle.net/3kZTe/6/
+ * @example At jsFiddle http://jsfiddle.net/ladrower/BmQq4/
+ * @link http://jsfiddle.net/ladrower/BmQq4/
  */
 
 (function(w, $) {
@@ -19,17 +19,31 @@
         }
     });
 
+    /**
+     * @class Intervals
+     *
+     * @constructor
+     * @param {String} selector jQuery selector
+     * @param {Object} userOptions (optional) Custom options object that overrides default
+     * {
+     *      @property {Number} userOptions.min Slider minimum value
+     *      @property {Number} userOptions.max Slider maximum value
+     *      @property {Number} userOptions.step Slider sliding step
+     *      @property {Number} userOptions.gap Minimum gap between handles when add/remove range controls are visible
+     *      @property {Number} userOptions.newlength Default length for newly created range. Will be adjusted between surrounding handles if not fitted
+     *      @property {Boolean} userOptions.disabled Slider disability flag
+     * }
+     */
     w.Intervals = function(selector, userOptions) {
         var _self = this;
         var _slider;
         var _options = {
-            animate: false,
-            disabled: false,
-            max: 100,
             min: 0,
+            max: 100,
             step: 1,
             gap: 5,
-            newlength: 10
+            newlength: 10,
+            disabled: false
         };
         var _delete_period_confirm = null,
             _add_period_confirm = null,
@@ -476,6 +490,9 @@
                 control.hide();
                 control.on('mousedown', function(event) {
                     event.stopPropagation();
+
+                    if (_options.disabled) return;
+
                     if ('minus' === type) {
                         key = _getPeriodKey(identifier);
                         if (key !== -1) {
@@ -800,6 +817,34 @@
             } catch (error) {
                 return true;
             }
+        };
+
+        /**
+         * Checks if slider is disabled
+         * @return {Boolean}
+         */
+        this.isDisabled = function() {
+            return !!_options.disabled;
+        };
+
+        /**
+         * Enables slider
+         * @return {Object} self instance of Intervals class
+         */
+        this.enable = function() {
+            _options.disabled = false;
+            _rebuild();
+            return this;
+        };
+
+        /**
+         * Disables slider for user manipulations
+         * @return {Object} self instance of Intervals class
+         */
+        this.disable = function() {
+            _options.disabled = true;
+            _rebuild();
+            return this;
         };
 
         _init();
