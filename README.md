@@ -6,10 +6,10 @@ Extends jquery-ui slider widget to include multiple ranges within a single slide
 Live example at jsFiddle http://jsfiddle.net/ladrower/BmQq4/
 
 
-
 Intervals class constructor
 ===========================
-
+**Intervals**
+```javascript
 /**
  * @class Intervals
  * @constructor
@@ -23,83 +23,89 @@ Intervals class constructor
  *      @property {Number} userOptions.newlength Default length for newly created range. Will be adjusted between surrounding handles if not fitted
  *      @property {Boolean} userOptions.disabled Slider disability flag
  * }
- * 
  */
 
-w.Intervals = function(selector, userOptions) {}
-
+window.Intervals = function(selector, userOptions) {}
+```
 
 
 Intervals class interface
 =========================
 
-
+**addPeriod**
+```javascript
 /**
  * Adds single period to this intervals instance and rebuilds the slider
  * @param {Number} start - start point for the period
  * @param {Number} length - the length for the period
  * @return {Object|null}
- * 
  */
 
 Intervals.addPeriod = function(start, length) {}
-
+```
 
 =
+**addPeriods**
+```javascript
 /**
  * Adds multiple periods and rebuilds the intervals slider
  * @param {Array} periodsArray example: Array([[0,20],[40,60]...])
  * @return {Object} self instance of am.Intervals class
- * 
  */
 
 Intervals.addPeriods = function(periodsArray) {}
-
+```
 
 =
+**getPeriod**
+```javascript
 /**
  * Get period by id
  * @param {Number} id
  * @return {Object}
- * 
  */
 
 Intervals.getPeriod = function(id) {}
-
+```
 
 =
+**getPeriods**
+```javascript
 /**
  * Gets all periods for this intervals instance
  * @return {Array} of each period.toPublic() object
- * 
  */
 
 Intervals.getPeriods = function() {}
-
+```
 
 =
+**isValidPeriod**
+```javascript
 /**
  * @param {Number} id - period Id
  * @param {Array[Number, Number]} abscissas as [a1, a2]
  * @return {Boolean}
- * 
  */
 
 Intervals.isValidPeriod = function(id, abscissas) {}
-
+```
 
 =
+**updatePeriod**
+```javascript
 /**
  * @param {Number} id - period Id
  * @param {Array} abscissas as [a1, a2]
  * @return {Object} self instance of Intervals class
- * 
  */
 
 Intervals.updatePeriod = function(id, abscissas) {}
-
+```
 
 =
+**setDeletePeriodConfirmCallback**
+```javascript
 /**
  * Sets callback function that can be used for period delete confirmation window
  *
@@ -116,13 +122,14 @@ Intervals.updatePeriod = function(id, abscissas) {}
  *          }());
  *      });
  * @return {Object} self instance of Intervals class
- * 
  */
 
 Intervals.setDeletePeriodConfirmCallback = function(confirmFunction) {}
-
+```
 
 =
+**setAddPeriodConfirmCallback**
+```javascript
 /**
  * Sets callback function that can be used for period add confirmation window
  *
@@ -139,13 +146,14 @@ Intervals.setDeletePeriodConfirmCallback = function(confirmFunction) {}
  *          }());
  *      });
  * @return {Object} self instance of Intervals class
- * 
  */
 
 Intervals.setAddPeriodConfirmCallback = function(confirmFunction) {}
-
+```
 
 =
+**setOnHandleMouseenterCallback**
+```javascript
 /**
  * Sets callback function for handle's mouseenter event
  *
@@ -164,13 +172,14 @@ Intervals.setAddPeriodConfirmCallback = function(confirmFunction) {}
  *          //...
  *      });
  * @return {Object} self instance of Intervals class
- * 
  */
 
 Intervals.setOnHandleMouseenterCallback = function(callbackFunction) {}
-
+```
 
 =
+**setOnHandleSlideCallback**
+```javascript
 /**
  * Sets callback function for handle's slide event
  *
@@ -189,71 +198,76 @@ Intervals.setOnHandleMouseenterCallback = function(callbackFunction) {}
  *          //...
  *      });
  * @return {Object} self instance of Intervals class
- * 
  */
 
 Intervals.setOnHandleSlideCallback = function(callbackFunction) {}
-
+```
 
 =
+**empty**
+```javascript
 /**
  * Deletes all periods and rebuilds the intervals slider
  * @return {Object} self instance of Intervals class
- * 
  */
 
 Intervals.empty = function() {}
-
+```
 
 =
+**getSlider**
+```javascript
 /**
  * Gets jQuery object associated with this intervals instance
  * @return {Object} jQuery object
- * 
  */
 
 Intervals.getSlider = function() {}
-
+```
 
 =
+**isDestroyed**
+```javascript
 /**
  * Checks if slider DOM element has been unwidgetized
  * @return {Boolean}
- * 
  */
 
 Intervals.isDestroyed = function() {}
-
+```
 
 =
+**isDisabled**
+```javascript
 /**
  * Checks if slider is disabled
  * @return {Boolean}
- *
  */
 
 Intervals.isDisabled = function() {}
-
+```
 
 =
+**enable**
+```javascript
 /**
  * Enables slider
  * @return {Object} self instance of Intervals class
- *
  */
 
 Intervals.enable = function() {}
-
+```
 
 =
+**disable**
+```javascript
 /**
  * Disables slider for user manipulations
  * @return {Object} self instance of Intervals class
- *
  */
 
 Intervals.disable = function() {}
-
+```
 
 =========================
 
