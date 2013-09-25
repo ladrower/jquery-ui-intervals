@@ -25,7 +25,7 @@ xmlns:fn="http://www.w3.org/2005/xpath-functions">
               <META http-equiv="Content-Type" content="text/html; charset=utf-8"/>
               <LINK HREF="http://www.google.com/favicon.ico" type="image/x-icon"
                     rel="shortcut icon"/>
-              <LINK HREF="styleguide.css"
+              <LINK HREF="styleguide.css?0.1.0"
                     type="text/css" rel="stylesheet"/>
 
               <SCRIPT language="javascript" type="text/javascript">
