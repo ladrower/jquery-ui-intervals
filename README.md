@@ -204,6 +204,37 @@ Intervals.setOnHandleSlideCallback = function(callbackFunction) {}
 ```
 
 =
+**setOnBeforeHandleSlideCallback**
+```javascript
+/**
+ * Sets callback function for handle's before slide event
+ * Prevents slide if callback function returns `false`
+ *
+ * @param {Function} callbackFunction
+ *      stores a callback function
+ *      function args:
+ *          1. context - jQuery object of slided handle
+ *          2. period - instance of period.toPublic() object that is linked to slided handle
+ *          3. edgeIndex - integer number[0-1] indicating left or right handle triggered
+ *
+ * @example
+ *      intervals.setOnHandleSlideCallback(function(context, period, edgeIndex) {
+ *          var handlePosition = context.offset().left;
+ *          var periodId = period.getId();
+ *          var handleAbscissa = period.getAbscissas()[edgeIndex];
+ *
+ *          if (handleAbscissa > 50) {
+ *              return false;
+ *          }
+ *          //...
+ *      });
+ * @return {Object} self instance of Intervals class
+ */
+
+Intervals.setOnBeforeHandleSlideCallback = function(callbackFunction) {}
+```
+
+=
 **empty**
 ```javascript
 /**

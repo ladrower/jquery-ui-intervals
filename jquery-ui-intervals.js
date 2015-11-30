@@ -48,6 +48,7 @@
         var _delete_period_confirm = null,
             _add_period_confirm = null,
             _on_handle_mouseenter = null,
+            _on_before_handle_slide = null,
             _on_handle_slide = null;
 
         var SELECTORS = {
@@ -134,16 +135,25 @@
             _options.slide = function( event, ui ) {
                 var index = _slider.find('.'+SELECTORS.handle['class']).index(ui.handle);
 
-                function onSlide() {
+                var call = function(fn) {
+                    var key = _getPeriodKeyByIndex(index);
+                    if (key !== -1) {
+                        var edgeIndex = _isLeftHandle(index) ? 0 : 1;
+                        return fn($(ui.handle), _periods[key].toPublic(), edgeIndex);
+                    }
+                };
+
+                if (typeof(_on_before_handle_slide) === 'function'
+                    && call(_on_before_handle_slide) === false) {
+                    return false;
+                }
+
+                var onSlide = function () {
                     if (typeof(_on_handle_slide) === 'function') {
-                        var key = _getPeriodKeyByIndex(index);
-                        if (key !== -1) {
-                            var edgeIndex = _isLeftHandle(index) ? 0 : 1;
-                            _on_handle_slide($(ui.handle), _periods[key].toPublic(), edgeIndex);
-                        }
+                        call(_on_handle_slide);
                     }
                     return true;
-                }
+                };
 
                 if (!_validHandle(index, ui.value)) {
                     if (_isLeftHandle(index) && _isThereNextLeftHandle(index)) {
@@ -220,18 +230,12 @@
 
         function _isThereNextLeftHandle(index) {
             var values = _slider.intervals("option", "values");
-            if (index in values && values[index-1] !== undefined) {
-                return true;
-            }
-            return false;
+            return index in values && values[index - 1] !== undefined;
         }
 
         function _isThereNextRightHandle(index) {
             var values = _slider.intervals("option", "values");
-            if (index in values && values[index+1] !== undefined) {
-                return true;
-            }
-            return false;
+            return index in values && values[index + 1] !== undefined;
         }
 
         function _getPeriodKey(periodId) {
@@ -301,7 +305,7 @@
          * Gets surrounding handles abscissas for the outranged point
          * @param {Number} abscissa - point out of any range
          * @throws {String} message in case the point is within a range
-         * @return {Array[Number, Number]}
+         * @return {Array<Number, Number>}
          */
         function _getSurroundingPoints(abscissa) {
             if (_getPeriodKeyByInnerPoint(abscissa) !== -1) {
@@ -322,18 +326,12 @@
         }
 
         function _isValidParams(start, length) {
-            if (start < _options.min || start >= _options.max || length < _options.step) {
-                return false;
-            }
-            return true;
+            return !(start < _options.min || start >= _options.max || length < _options.step);
         }
 
         function _isValidPeriod(periodId, abscissas) {
             var key = _getPeriodKey(periodId);
-            if (key !== -1 && _isValidParams(abscissas[0], abscissas[1] - abscissas[0]) && !_periodIntersectsOthers(periodId, abscissas)) {
-                return true;
-            }
-            return false;
+            return key !== -1 && _isValidParams(abscissas[0], abscissas[1] - abscissas[0]) && !_periodIntersectsOthers(periodId, abscissas);
         }
 
         function _updatePeriod(periodId, abscissas) {
@@ -525,8 +523,8 @@
                             key = _getPeriodKey(identifier);
                             if (key !== -1) {
                                 var indexes = _periods[key].getIndexes(),
-                                    leftEdge = _periods[key].getAbscissas()[1],
                                     nextKey = _getPeriodKeyByIndex(indexes[1]+1);
+                                leftEdge = _periods[key].getAbscissas()[1];
                                 if (nextKey !== -1) {
                                     rightEdge = _periods[nextKey].getAbscissas()[0];
                                 }
@@ -784,6 +782,37 @@
         this.setOnHandleSlideCallback = function(callbackFunction) {
             if (typeof(callbackFunction) === 'function') {
                 _on_handle_slide = callbackFunction;
+            }
+            return this;
+        };
+
+        /**
+         * Sets callback function for handle's before slide event
+         * Prevents slide if callback function returns `false`
+         *
+         * @param {Function} callbackFunction
+         *      stores a callback function
+         *      function args:
+         *          1. context - jQuery object of slided handle
+         *          2. period - instance of period.toPublic() object that is linked to slided handle
+         *          3. edgeIndex - integer number[0-1] indicating left or right handle triggered
+         *
+         * @example
+         *      intervals.setOnBeforeHandleSlideCallback(function(context, period, edgeIndex) {
+         *          var handlePosition = context.offset().left;
+         *          var periodId = period.getId();
+         *          var handleAbscissa = period.getAbscissas()[edgeIndex];
+         *
+         *          if (handleAbscissa > 50) {
+         *              return false;
+         *          }
+         *          //...
+         *      });
+         * @return {Object} self instance of Intervals class
+         */
+        this.setOnBeforeHandleSlideCallback = function (callbackFunction) {
+            if (typeof (callbackFunction) === 'function') {
+                _on_before_handle_slide = callbackFunction;
             }
             return this;
         };
